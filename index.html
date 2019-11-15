@@ -10,25 +10,27 @@
   <body>
     <h1>Minesweeper</h1>
     <main>
-      <!-- <input
-        type="number"
-        name="columns"
-        id="columns"
-        placeholder="enter number of columns"
-      />
-      <input
-        type="number"
-        name="rows"
-        id="rows"
-        placeholder="enter number of rows"
-      />
-      <input
-        type="number"
-        name="mines"
-        id="mines"
-        placeholder="enter number of mines"
-      />
-      <button id="button">Generate Grid</button> -->
+      <label for="size"
+        >Size
+        <input
+          type="number"
+          name="size"
+          id="size"
+          placeholder="enter size of grid"
+          value="15"
+        />
+      </label>
+      <label for="mines"
+        >Mines
+        <input
+          type="number"
+          name="mines"
+          id="mines"
+          placeholder="enter number of mines"
+          value="30"
+        />
+      </label>
+      <button id="button">Generate Grid</button>
       <div id="gameArea"></div>
     </main>
     <script src="main.js"></script>

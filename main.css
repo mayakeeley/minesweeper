@@ -12,3 +12,7 @@ td {
 .mine {
   text-align: center;
 }
+
+label {
+  display: block;
+}

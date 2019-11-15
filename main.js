@@ -1,6 +1,9 @@
 const gameArea = document.getElementById("gameArea");
-// const button = document.getElementById("button");
-// button.addEventListener("click", generate)
+const button = document.getElementById("button");
+const sizevalue = document.getElementById("size");
+const mineNumber = document.getElementById("mines");
+let size = 0;
+let mines = 0;
 
 const createTable = size => {
   let table, tr, td;
@@ -20,8 +23,6 @@ const createTable = size => {
   return gameArea.appendChild(table);
 };
 
-createTable(15);
-
 const generateMines = (size, mines) => {
   const numCells = size * size;
   let x = 0;
@@ -37,8 +38,6 @@ const generateMines = (size, mines) => {
     x++;
   }
 };
-
-generateMines(15, 30);
 
 const checkSurroundingBoxes = size => {
   let allCells = document.querySelectorAll("td");
@@ -92,4 +91,12 @@ const checkSurroundingBoxes = size => {
   });
 };
 
-checkSurroundingBoxes(15);
+const checkSizeInput = () => {
+  size = +sizevalue.value;
+  mines = +mineNumber.value;
+
+  createTable(size);
+  generateMines(size, mines);
+  checkSurroundingBoxes(size);
+};
+button.addEventListener("click", checkSizeInput);
