@@ -1,37 +1,39 @@
-let rows = 15;
-let columns = 15;
+const gameArea = document.getElementById("gameArea");
 
-const makeCell = tr => {
-  const td = document.createElement("td");
+const createTable = size => {
+  let table, tr, td;
 
-  tr.appendChild(td);
+  table = document.createElement("table");
 
-  return tr;
-};
-
-const makeLine = newTable => {
-  let tr = document.createElement("tr");
-
-  for (let i = 0; i < rows; i++) {
-    tr = makeCell(tr);
+  for (let row = 0; row < size; ++row) {
+    tr = document.createElement("tr");
+    for (let col = 0; col < size; ++col) {
+      td = document.createElement("td");
+      td.id = "cell_" + (row * size + col);
+      tr.appendChild(td);
+    }
+    table.appendChild(tr);
   }
-  newTable.appendChild(tr);
 
-  return newTable;
+  return gameArea.appendChild(table);
 };
 
-makeGrid = () => {
-  const gameArea = document.getElementById("gameArea");
-  let newTable = document.createElement("table");
+createTable(15);
 
-  for (let i = 0; i < columns; i++) {
-    newTable = makeLine(newTable);
+const generateMines = (size, mines) => {
+  const numCells = size * size;
+  let x = 0;
+  while (x < mines && x < numCells) {
+    let cellId = "cell_" + Math.floor(Math.random() * numCells);
+    let cell = document.getElementById(cellId);
+
+    if (cell.classList.contains("mine")) {
+      continue;
+    }
+    cell.classList.add("mine");
+    cell.innerHTML = "X";
+    x++;
   }
-  gameArea.appendChild(newTable);
 };
 
-makeGrid();
-
-const generateMines = () => {
-  const numberOfCells = rows * columns;
-};
+generateMines(15, 30);
