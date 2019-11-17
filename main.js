@@ -1,6 +1,5 @@
 const gameArea = document.getElementById("gameArea");
 const button = document.getElementById("button");
-const sizevalue = document.getElementById("height");
 const rowValue = document.getElementById("rows");
 const columnValue = document.getElementById("columns");
 const mineNumber = document.getElementById("mines");
