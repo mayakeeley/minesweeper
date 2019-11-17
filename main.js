@@ -1,21 +1,24 @@
 const gameArea = document.getElementById("gameArea");
 const button = document.getElementById("button");
-const sizevalue = document.getElementById("size");
+const sizevalue = document.getElementById("height");
+const rowValue = document.getElementById("rows");
+const columnValue = document.getElementById("columns");
 const mineNumber = document.getElementById("mines");
-let size = 0;
+let rows = 0;
+let columns = 0;
 let mines = 0;
 
-const createTable = size => {
+const createTable = (rows, columns) => {
   let table, tr, td;
   gameArea.innerHTML = "";
 
   table = document.createElement("table");
 
-  for (let row = 0; row < size; row++) {
+  for (let row = 0; row < rows; row++) {
     tr = document.createElement("tr");
-    for (let col = 0; col < size; col++) {
+    for (let col = 0; col < columns; col++) {
       td = document.createElement("td");
-      td.id = row * size + col;
+      td.id = row * columns + col;
       tr.appendChild(td);
     }
     table.appendChild(tr);
@@ -24,8 +27,8 @@ const createTable = size => {
   return gameArea.appendChild(table);
 };
 
-const generateMines = (size, mines) => {
-  const numCells = size * size;
+const generateMines = (rows, columns, mines) => {
+  const numCells = rows * columns;
   let x = 0;
   while (x < mines && x < numCells) {
     let cellId = Math.floor(Math.random() * numCells);
@@ -40,7 +43,7 @@ const generateMines = (size, mines) => {
   }
 };
 
-const checkSurroundingBoxes = size => {
+const checkSurroundingBoxes = (rows, columns) => {
   let allCells = document.querySelectorAll("td");
   let allIds = [];
   for (let i = 0; i < allCells.length; i++) {
@@ -52,35 +55,35 @@ const checkSurroundingBoxes = size => {
   allIds.flat().forEach(cellId => {
     let count = 0;
     let surroundingIds;
-    if (Number.isInteger(+cellId / size)) {
+    if (Number.isInteger(+cellId / columns)) {
       surroundingIds = [
-        +cellId - size,
-        +cellId - size + 1,
+        +cellId - columns,
+        +cellId - columns + 1,
         +cellId + 1,
-        +cellId + size,
-        +cellId + size + 1
+        +cellId + columns,
+        +cellId + columns + 1
       ];
-    } else if (Number.isInteger((+cellId + 1) / size)) {
+    } else if (Number.isInteger((+cellId + 1) / columns)) {
       surroundingIds = [
-        +cellId - size - 1,
-        +cellId - size,
+        +cellId - columns - 1,
+        +cellId - columns,
         +cellId - 1,
-        +cellId + size - 1,
-        +cellId + size
+        +cellId + columns - 1,
+        +cellId + columns
       ];
     } else {
       surroundingIds = [
-        +cellId - size - 1,
-        +cellId - size,
-        +cellId - size + 1,
+        +cellId - columns - 1,
+        +cellId - columns,
+        +cellId - columns + 1,
         +cellId - 1,
         +cellId + 1,
-        +cellId + size - 1,
-        +cellId + size,
-        +cellId + size + 1
+        +cellId + columns - 1,
+        +cellId + columns,
+        +cellId + columns + 1
       ];
     }
-    let validIds = surroundingIds.filter(n => n < size * size && n > 0);
+    let validIds = surroundingIds.filter(n => n < columns * rows && n > 0);
     if (document.getElementById(cellId).innerHTML !== "X") {
       validIds.forEach(cell => {
         if (document.getElementById(cell).innerHTML == "X") {
@@ -94,11 +97,12 @@ const checkSurroundingBoxes = size => {
 };
 
 const checkSizeInput = () => {
-  size = +sizevalue.value;
+  rows = +rowValue.value;
+  columns = +columnValue.value;
   mines = +mineNumber.value;
 
-  createTable(size);
-  generateMines(size, mines);
-  checkSurroundingBoxes(size);
+  createTable(rows, columns);
+  generateMines(rows, columns, mines);
+  checkSurroundingBoxes(rows, columns);
 };
 button.addEventListener("click", checkSizeInput);
