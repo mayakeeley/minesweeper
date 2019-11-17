@@ -7,12 +7,42 @@ td {
   width: 20px;
   height: 20px;
   border: 1px solid black;
-}
-
-.mine {
   text-align: center;
+  font-weight: bold;
 }
 
 label {
   display: block;
+}
+
+.number1 {
+  color: blue;
+}
+
+.number2 {
+  color: green;
+}
+
+.number3 {
+  color: red;
+}
+
+.number4 {
+  color: darkblue;
+}
+
+.number5 {
+  color: maroon;
+}
+
+.number6 {
+  color: turquoise;
+}
+
+.number7 {
+  color: black;
+}
+
+.number8 {
+  color: gray;
 }

@@ -7,6 +7,7 @@ let mines = 0;
 
 const createTable = size => {
   let table, tr, td;
+  gameArea.innerHTML = "";
 
   table = document.createElement("table");
 
@@ -87,6 +88,7 @@ const checkSurroundingBoxes = size => {
           document.getElementById(cellId).innerHTML = count;
         }
       });
+      document.getElementById(cellId).classList.add(`number${count}`);
     }
   });
 };
