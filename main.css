@@ -1,14 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+body {
+  background-color: rgb(59, 59, 59);
+}
+
 #gameArea table {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-collapse: collapse;
 }
 
+#gameArea {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  width: 50%;
+  margin: auto;
+  background-color: gray;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+}
+
+h1 {
+  text-align: center;
+  margin: 0;
+}
+
 td {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border: 1px solid black;
   text-align: center;
   font-weight: bold;
+  font-size: 1.2em;
+  background-color: lightgray;
 }
 
 label {
@@ -45,4 +78,56 @@ label {
 
 .number8 {
   color: gray;
+}
+
+section {
+  width: 50%;
+  margin: auto;
+}
+section > div {
+  border: 2px solid black;
+  padding: 20px;
+  background-color: lightgray;
+}
+
+.input {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  width: 50px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+  .input {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  section,
+  #gameArea {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  section,
+  #gameArea {
+    width: 100%;
+  }
 }

@@ -82,7 +82,7 @@ const checkSurroundingBoxes = (rows, columns) => {
         +cellId + columns + 1
       ];
     }
-    let validIds = surroundingIds.filter(n => n < columns * rows && n > 0);
+    let validIds = surroundingIds.filter(n => n < columns * rows && n >= 0);
     if (document.getElementById(cellId).innerHTML !== "X") {
       validIds.forEach(cell => {
         if (document.getElementById(cell).innerHTML == "X") {
